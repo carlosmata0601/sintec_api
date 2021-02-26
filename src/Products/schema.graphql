@@ -1,0 +1,50 @@
+#TYPES
+type Product {
+    id: ID
+    name: String
+    photo: String
+    active: Boolean
+    type: [ProductTypes]
+    count: Int
+    createdAt: String
+    types: [ProductTypes]
+}
+type ProductTypes {
+    id: ID
+    name: String
+}
+type Response {
+    status: Boolean
+    message: String
+}
+#INPUTS
+input InputProductType {
+    id: String
+    name: String
+}
+input InputProduct {
+    name: String
+    photo: String
+    active: Boolean
+    count: Int
+    types: [InputProductType]
+}
+input InputUpdate {
+    id: Int
+    name: String
+    photo: String
+    active: Boolean
+    count: Int
+    types: [InputProductType]
+}
+#QUERIES and MUTATIONS
+type Query { 
+    getProducts(id: Int): [Product]
+    getProductTypes: [ProductTypes]
+}
+type Mutation {
+    createProductType(input: InputProductType): ProductTypes
+    createProduct(input: InputProduct): Product
+    updateProduct(input: InputUpdate): Product
+    deleteProduct(id: Int): Response
+}
